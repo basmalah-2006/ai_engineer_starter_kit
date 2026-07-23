@@ -15,11 +15,11 @@ comment-moderation use case (e.g. flagging comments for review before they're pu
  
 *Run `model_scout_comparison.ipynb` locally and paste your numbers here.*
  
-| Model | Accuracy (15-sentence test set) | Avg. latency (ms/sentence, CPU) |
-|---|---|---|
-| unitary/toxic-bert | 53.3% | 53.3 |
-| martin-ha/toxic-comment-model | 73.3% | 29.0 |
-| s-nlp/roberta_toxicity_classifier | **100%** | 40.2 |
+| Model | Accuracy (15-sentence test set) | Avg. latency (ms/sentence, CPU) | Cost (Params / RAM) |
+|---|---|---|---|
+| unitary/toxic-bert | 53.3% | 53.3 | High (~110M params) |
+| martin-ha/toxic-comment-model | 73.3% | 29.0 | Lowest (~66M params) |
+| s-nlp/roberta_toxicity_classifier | **100%** | 40.2 | Medium (~125M params) |
  
 ## Chosen model: `s-nlp/roberta_toxicity_classifier`
  
@@ -39,10 +39,6 @@ to provide. `martin-ha/toxic-comment-model` was fastest, since DistilBERT is rou
 parameter count of the RoBERTa/BERT-base models, which is a meaningful advantage at real
 production scale, but its accuracy gap on this test set was too large to prefer it over the
 RoBERTa model.
- 
-<!-- ## Demo
- 
-Public Gradio Space link: `_paste your Space URL here after deploying_` -->
  
 ## Reflection
  
