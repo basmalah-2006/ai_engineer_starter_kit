@@ -58,12 +58,8 @@ def build_messages(raw_text):
     ]
 
 def default_complete(messages, model=None):
-    """
-    If OPENAI_API_KEY exists, call the real OpenAI-compatible API.
-
-    If no API key exists, fall back to the offline fake LLM.
-    """
     import os
+    from openai import OpenAI
 
     api_key = os.getenv("OPENAI_API_KEY", "").strip()
 
@@ -71,18 +67,21 @@ def default_complete(messages, model=None):
         from fake_llm import fake_complete
         return fake_complete(messages, model)
 
-    from openai import OpenAI
+    base_url = os.getenv("OPENAI_BASE_URL")
 
-    client = OpenAI()
+    client_kwargs = {"api_key": api_key}
+    if base_url:
+        client_kwargs["base_url"] = base_url
 
-    model = model or os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+    client = OpenAI(**client_kwargs)
+
+    model = model or os.getenv("OPENAI_MODEL", "gemini-2.0-flash")
 
     response = client.chat.completions.create(
         model=model,
         messages=messages,
         temperature=0,
         max_tokens=300,
-        response_format={"type": "json_object"},
     )
 
     return response.choices[0].message.content
