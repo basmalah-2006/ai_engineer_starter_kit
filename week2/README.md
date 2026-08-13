@@ -141,5 +141,5 @@ You are an idiot and should just quit.
 
 ## Author
 
-**Basmalah Ahmed**  
+**Basmala Ahmed**  
 AI Engineer Starter Kit — Week 2
