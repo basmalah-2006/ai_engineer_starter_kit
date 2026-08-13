@@ -121,6 +121,6 @@ Throughout this roadmap, I aim to:
 
 ## Author
 
-**Basmalah Ahmed**  
+**Basmala Ahmed**  
 Computer Science & Artificial Intelligence Student  
 AI Engineer Roadmap — Helwan Career Center
