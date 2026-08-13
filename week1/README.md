@@ -88,5 +88,5 @@ This project demonstrates:
 
 ## Author
 
-**Basmalah Ahmed**  
+**Basmala Ahmed**  
 AI Engineer Starter Kit — Week 1
