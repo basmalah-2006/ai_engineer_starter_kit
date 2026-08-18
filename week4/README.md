@@ -351,11 +351,11 @@ This project was built as **Mini Project 4** for the **Helwan Career Center 12-W
 
 It demonstrates:
 
-* **LO 4.1** — Installed and ran an open model locally using Ollama and used its OpenAI-compatible endpoint.
-* **LO 4.2** — Understood quantization and used a 4-bit local model on hardware with 4GB dedicated VRAM.
-* **LO 4.3** — Selected Llama 3.1 8B based on hardware constraints, quality requirements, and privacy needs.
-* **LO 4.4** — Switched between hosted and local inference using a configuration flag and different `base_url`.
-* **LO 4.5** — Evaluated when local inference is preferable for privacy, cost, and offline usage versus hosted APIs for higher model capability and convenience.
+* Installed and ran an open model locally using Ollama and used its OpenAI-compatible endpoint.
+* Understood quantization and used a 4-bit local model on hardware with 4GB dedicated VRAM.
+* Selected Llama 3.1 8B based on hardware constraints, quality requirements, and privacy needs.
+* Switched between hosted and local inference using a configuration flag and different `base_url`.
+* Evaluated when local inference is preferable for privacy, cost, and offline usage versus hosted APIs for higher model capability and convenience.
 
 ## Author
 
