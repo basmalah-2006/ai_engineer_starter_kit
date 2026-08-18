@@ -6,6 +6,12 @@ This project demonstrates how to use local LLMs with Ollama to build a privacy-f
 
 The application also supports an optional hosted mode using the Groq API for higher-quality responses.
 
+## 📸 Photos
+
+<img width="1830" height="516" alt="local" src="https://github.com/user-attachments/assets/85b0c19c-80a1-4396-bb07-b5b656c9a4af" />
+
+<img width="1838" height="515" alt="hosting" src="https://github.com/user-attachments/assets/d42ecb43-2cde-4115-bacc-0eabe9a4fc7e" />
+
 ## Features
 
 * Runs locally using Llama 3.1 8B through Ollama.
