@@ -38,9 +38,16 @@ ai_engineer_starter_kit/
 │   ├── .env.example
 │   └── conftest.py
 │
+├── week4/
+│   ├── README.md
+│   ├── journal.py
+│   ├── BENCHMARK.md
+│   ├── requirements.txt
+│   ├── .env.example
+│   └── .gitignore
+│
 └── README.md
 ```
-
 ## Weekly Projects
 
 ### Week 1 — Engineering Foundations for AI
@@ -95,6 +102,23 @@ Mini Project:
 
 **Prompt-Powered Microservice — Customer Email Triage**
 
+---
+
+### Week 4 — Local LLMs & Open-Source Tooling
+
+Topics covered:
+
+- Running open models locally with Ollama
+- OpenAI-compatible local inference endpoints
+- Model quantization (4-bit) and hardware constraints
+- Switching between local and hosted inference (Ollama vs Groq API)
+- Model benchmarking (tokens/sec, latency)
+- Privacy-first, offline-first application design
+
+Mini Project:
+
+**Private Journaling Assistant**
+
 ## Technologies
 
 - Python
@@ -107,6 +131,7 @@ Mini Project:
 - Pydantic
 - pytest
 - Git & GitHub
+- Ollama
 
 ## Learning Goals
 
