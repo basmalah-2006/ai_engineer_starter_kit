@@ -6,7 +6,8 @@ from sentence_transformers import SentenceTransformer
 # 1. Load and Clean Data
 @st.cache_data
 def load_data():
-    df = pd.read_csv("ProductsData.csv")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    df = pd.read_csv(os.path.join(base_dir, "ProductsData.csv"), encoding="latin1")
     df = df.dropna(subset=["Product_name"])
     
     # Clean columns from extra quotation marks

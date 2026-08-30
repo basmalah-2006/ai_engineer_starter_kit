@@ -57,6 +57,10 @@ A compact multilingual sentence-transformer model that maps text from 50+ langua
 | Model size       | ~118 MB                                    |
 | Source           | `sentence-transformers` library            |
 
+## Chunk Size
+
+Since the dataset consists of short product listings, each product is embedded as a single text entry and no additional chunking is required. For longer documents, chunking into smaller sections with a suitable overlap would help preserve context and improve retrieval quality.
+
 ## Dataset Info
 
 | Metric              | Value                           |
