@@ -46,8 +46,16 @@ ai_engineer_starter_kit/
 │   ├── .env.example
 │   └── .gitignore
 │
+├── week5/
+│   ├── README.md
+│   ├── app.py
+│   ├── project.py
+│   ├── ProductsData.csv
+│   └── requirements.txt
+│
 └── README.md
 ```
+
 ## Weekly Projects
 
 ### Week 1 — Engineering Foundations for AI
@@ -119,6 +127,23 @@ Mini Project:
 
 **Private Journaling Assistant**
 
+---
+
+### Week 5 — Embeddings & Vector Search
+
+Topics covered:
+
+- Text embeddings and dense vector representations
+- Multilingual sentence transformers
+- Vector databases and similarity indexing
+- Cosine similarity and nearest-neighbor retrieval
+- Metadata filtering in vector search
+- Building multilingual semantic search systems
+
+Mini Project:
+
+**Semantic Product Search Engine**
+
 ## Technologies
 
 - Python
@@ -132,6 +157,10 @@ Mini Project:
 - pytest
 - Git & GitHub
 - Ollama
+- sentence-transformers
+- ChromaDB
+- Streamlit
+- scikit-learn
 
 ## Learning Goals
 
