@@ -1,12 +1,22 @@
+import os
+import math
 import streamlit as st
 import pandas as pd
 import chromadb
 from sentence_transformers import SentenceTransformer
 
+def clean_price(price_str):
+    try:
+        val = float(str(price_str).replace(" ", "").replace(",", ""))
+        return val if not math.isnan(val) else 0.0
+    except: 
+        return 0.0
+
 # 1. Load and Clean Data
 @st.cache_data
 def load_data():
-    df = pd.read_csv("ProductsData.csv")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    df = pd.read_csv(os.path.join(base_dir, "ProductsData.csv"), encoding="latin1")
     df = df.dropna(subset=["Product_name"])
     
     # Clean columns from extra quotation marks
@@ -34,8 +44,8 @@ model = load_model()
 
 # 3. Create Chroma Database and Store Vectors
 @st.cache_resource
-def setup_chroma():
-    client = chromadb.Client()
+def setup_chroma(_df):
+    client = chromadb.EphemeralClient()
     
     try:
         client.delete_collection("products_collection")
@@ -57,7 +67,7 @@ def setup_chroma():
         metadatas.append({
             "product_id": row["Product_id"],
             "category": row["Product_Category"],
-            "price": row["price"] if row["price"] != "nan" else "0",
+            "price": clean_price(row["price"]),
             "region": row["Region_address"],
             "city": row["Local_address"],
             "seller_type": row["Professional_Publication"]
@@ -73,7 +83,7 @@ def setup_chroma():
     
     return collection
 
-collection = setup_chroma()
+collection = setup_chroma(df)
 
 # 4. Semantic Search Function
 def semantic_search(query, top_k=5, category_filter=None, max_price=None):
@@ -88,8 +98,8 @@ def semantic_search(query, top_k=5, category_filter=None, max_price=None):
     if category_filter:
         conditions.append({"category": {"$eq": category_filter}})
     if max_price:
-        conditions.append({"price": {"$lte": str(max_price)}})
-    
+        conditions.append({"price": {"$lte": float(max_price)}}) 
+        conditions.append({"price": {"$gt": 0.0}})    
     if len(conditions) == 1:
         where_filter = conditions[0]
     elif len(conditions) > 1:
@@ -151,7 +161,8 @@ if st.button("🔎 Search", type="primary"):
                         with col1:
                             st.metric("📍 City", metadata["city"])
                         with col2:
-                            st.metric("💰 Price", f"{metadata['price']} DH")
+                            price_display = f"{metadata['price']} DH" if metadata['price'] > 0 else "Unknown"
+                            st.metric("💰 Price", price_display)  
                         with col3:
                             st.metric("🏷️ Category", metadata["category"])
                         

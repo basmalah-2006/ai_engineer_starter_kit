@@ -1,10 +1,19 @@
+import os
 import pandas as pd
 import chromadb
+import math
 from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
+
+def clean_price(price_str):
+    try:
+        val = float(str(price_str).replace(" ", "").replace(",", ""))
+        return val if not math.isnan(val) else 0.0  
+    except:
+        return 0.0
 
 # 1. Load and Clean Data
-df = pd.read_csv("week5/ProductsData.csv", encoding="latin1")
+base_dir = os.path.dirname(os.path.abspath(__file__))
+df = pd.read_csv(os.path.join(base_dir, "ProductsData.csv"), encoding="latin1")
 
 # Drop rows with missing product names
 df = df.dropna(subset=["Product_name"])
@@ -34,7 +43,7 @@ model = SentenceTransformer(model_name)
 print(f"✅ Loaded model: {model_name}")
 
 # 3. Create Chroma Database and Store Vectors
-client = chromadb.Client()  # In-memory database (local)
+client = chromadb.EphemeralClient()  # In-memory database (local)
 
 # Delete collection if it already exists
 try:
@@ -57,7 +66,7 @@ for _, row in df.iterrows():
     metadatas.append({
         "product_id": row["Product_id"],
         "category": row["Product_Category"],
-        "price": row["price"] if row["price"] != "nan" else "0",
+        "price": clean_price(row["price"]),
         "region": row["Region_address"],
         "city": row["Local_address"],
         "seller_type": row["Professional_Publication"]
@@ -87,7 +96,7 @@ def semantic_search(query, top_k=5, category_filter=None, max_price=None):
     if category_filter:
         conditions.append({"category": {"$eq": category_filter}})
     if max_price:
-        conditions.append({"price": {"$lte": str(max_price)}})
+        conditions.append({"price": {"$lte": float(max_price)}})
     
     if len(conditions) == 1:
         where_filter = conditions[0]
@@ -108,18 +117,21 @@ print("\n🔍 Experiment 1: Search for 'iPhone phone'")
 results = semantic_search("iphone apple telephone", top_k=3)
 for i, doc in enumerate(results["documents"][0]):
     print(f"{i+1}. {doc}")
-    print(f"   📍 {results['metadatas'][0][i]['city']} | 💰 {results['metadatas'][0][i]['price']} DH")
+    price = results['metadatas'][0][i]['price']
+    price_display = f"{price} DH" if price > 0 else "Unknown"
+    print(f"   📍 {results['metadatas'][0][i]['city']} | 💰 {price_display}")
 print()
 
 print("🔍 Experiment 2: Search for 'apartment for sale in Casablanca' (with filter)")
 results = semantic_search(
     "appartement casablanca", 
     top_k=3,
-    category_filter="Appartements "
+    category_filter="Appartements"
 )
 for i, doc in enumerate(results["documents"][0]):
     print(f"{i+1}. {doc}")
-    print(f"   💰 {results['metadatas'][0][i]['price']} DH")
+    price = results['metadatas'][0][i]['price']
+    print(f"   💰 {f'{price} DH' if price > 0 else 'Unknown'}")
 print()
 
 print("🔍 Experiment 3: Semantic search for 'powerful gaming laptop' (notice it will find PC Gamer)")
@@ -130,10 +142,12 @@ print()
 
 print("🔍 Experiment 4: Search for 'economic car' with max price 80000 DH")
 results = semantic_search(
-    "voiture pas cher economique", 
+    "voiture occasion pas cher", 
     top_k=3,
-    max_price=80000
+    max_price=80000,
+    category_filter="Voitures" 
 )
 for i, doc in enumerate(results["documents"][0]):
     print(f"{i+1}. {doc}")
-    print(f"   💰 {results['metadatas'][0][i]['price']} DH")
+    price = results['metadatas'][0][i]['price']
+    print(f"   💰 {f'{price} DH' if price > 0 else 'Unknown'}")

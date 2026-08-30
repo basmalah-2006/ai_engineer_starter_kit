@@ -57,6 +57,10 @@ A compact multilingual sentence-transformer model that maps text from 50+ langua
 | Model size       | ~118 MB                                    |
 | Source           | `sentence-transformers` library            |
 
+## Chunk Size
+
+Since the dataset consists of short product listings, each product is embedded as a single text entry and no additional chunking is required. For longer documents, chunking into smaller sections with a suitable overlap would help preserve context and improve retrieval quality.
+
 ## Dataset Info
 
 | Metric              | Value                           |
@@ -227,10 +231,10 @@ This project was built as **Mini Project 5** for the **Helwan Career Center 12-W
 It demonstrates:
 
 * **LO 5.1** — Generated dense vector embeddings from product text using a pretrained sentence-transformer model.
-* **LO 5.2** — Stored and indexed embeddings in ChromaDB and understood the role of vector databases in semantic retrieval.
-* **LO 5.3** — Implemented cosine similarity search and understood how distance in embedding space reflects semantic meaning.
-* **LO 5.4** — Selected a multilingual embedding model appropriate to the language diversity of the dataset.
-* **LO 5.5** — Combined semantic search with structured metadata filtering to support real-world search constraints such as price and category.
+* **LO 5.2** — Implemented cosine similarity search and used it to retrieve semantically similar products for any natural-language query.
+* **LO 5.3** — Stored and queried vectors in ChromaDB with metadata filtering by category and price.
+* **LO 5.4** — Applied embeddings to a real-world semantic search task over a multilingual product dataset.
+* **LO 5.5** — Selected a multilingual embedding model appropriate to the language diversity of the dataset (French, Arabic, English).
 
 ## Author
 
