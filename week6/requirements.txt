@@ -1,0 +1,32 @@
+# LangChain Ecosystem
+langchain
+langchain-core
+langchain-community
+langchain-text-splitters
+langchain-huggingface
+langchain-chroma
+langchain-classic
+
+# Vector Database
+chromadb
+
+# LLM Provider 
+groq
+
+# Embeddings & Re-ranking 
+sentence-transformers
+
+# PDF & Hybrid Search 
+pypdf
+rank-bm25
+
+# Web UI 
+streamlit
+
+# Environment 
+python-dotenv
+
+# Evaluation 
+ragas
+datasets
+pandas
