@@ -168,7 +168,7 @@ st.caption("⚠️ *This assistant is for informational purposes only and does n
 
 _, settings_col = st.columns([3, 1])
 with settings_col:
-    with st.popover(f"⚙️", use_container_width=True):
+    with st.popover(f"⚙️"):
         st.selectbox(
             "Retrieval method",
             METHODS,
