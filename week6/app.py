@@ -166,22 +166,35 @@ if prompt := st.chat_input("Ask a question about mental health... / اسأل س�
 st.markdown("---")
 st.caption("⚠️ *This assistant is for informational purposes only and does not replace professional medical advice.*")
 
-_, settings_col = st.columns([3, 1])
-with settings_col:
-    with st.popover(f"⚙️"):
-        st.selectbox(
-            "Retrieval method",
-            METHODS,
-            key="retrieval_method",
-            label_visibility="collapsed",
-        )
-        st.caption(METHOD_BLURBS[st.session_state.retrieval_method])
+st.markdown(
+    """
+    <style>
+    div[data-testid="stPopover"] {
+        position: fixed !important;
+        bottom: 5rem !important;      /* directly above the chat input bar */
+        right: 1.6rem !important;     /* far right, aligned with the send button */
+        z-index: 999990 !important;
+        width: 7.5rem;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
-        with st.expander("ليه التصميم ده؟ / Why these choices?"):
-            st.markdown(
-                "- **Hybrid 🏆**: أعلى Refusal Accuracy (85.7%) في تقييم.\n"
-                "- **Baseline ⚡**: الأسرع (~9 ثوانٍ متوسط زمن الاستجابة).\n"
-                "- **Re-ranker 🎯**: أدق لما تكون الإجابة مدفونة بين chunks كثيرة.\n\n"
-                "Hybrid يستخدم أوزان 70/30 لأن BM25 أضعف مع الصرف العربي، "
-                "بينما البحث الدلالي يلتقط المعنى بشكل أفضل."
-            )
+with st.popover(f"⚙️"):
+    st.selectbox(
+        "Retrieval method",
+        METHODS,
+        key="retrieval_method",
+        label_visibility="collapsed",
+    )
+    st.caption(METHOD_BLURBS[st.session_state.retrieval_method])
+
+    with st.expander("ليه التصميم ده؟ / Why these choices?"):
+        st.markdown(
+            "- **Hybrid 🏆**: أعلى Refusal Accuracy (85.7%) في تقييم.\n"
+            "- **Baseline ⚡**: الأسرع (~9 ثوانٍ متوسط زمن الاستجابة).\n"
+            "- **Re-ranker 🎯**: أدق لما تكون الإجابة مدفونة بين chunks كثيرة.\n\n"
+            "Hybrid يستخدم أوزان 70/30 لأن BM25 أضعف مع الصرف العربي، "
+            "بينما البحث الدلالي يلتقط المعنى بشكل أفضل."
+        )
