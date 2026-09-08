@@ -299,6 +299,38 @@ The grounding prompt enforces four non-negotiable rules:
 
 ---
 
+## Orchestration Choice: LangChain vs LlamaIndex (LO 6.2)
+
+For this project, we evaluated both major RAG orchestration frameworks before committing to **LangChain**. Here's the engineering rationale:
+
+### Why LangChain was chosen
+
+| Factor | LangChain | LlamaIndex | Our Verdict |
+| :--- | :--- | :--- | :--- |
+| **Pipeline Modularity** | Composable `Runnable` components via LCEL (`|` operator) | Retrieval-first, monolithic query engine | ✅ LangChain |
+| **Hybrid Search Support** | Native `EnsembleRetriever` + `BM25Retriever` | Requires custom implementation | ✅ LangChain |
+| **Re-ranking Integration** | `ContextualCompressionRetriever` wraps any retriever | Limited built-in re-ranking | ✅ LangChain |
+| **Component Swapping** | Swap retriever/LLM/embedding independently | Tied to index structure | ✅ LangChain |
+| **Custom LLM Logic** | `RunnableLambda` for arbitrary functions | Less flexible post-processing | ✅ LangChain |
+| **Ease of Basic RAG** | Moderate learning curve | Simpler for out-of-the-box RAG | ✅ LlamaIndex |
+| **Indexing Strategies** | Basic | Rich (tree, keyword-table, knowledge-graph) | ✅ LlamaIndex |
+
+### The Deciding Factor
+
+This project's core requirement was to **compare three distinct retrieval architectures** (Baseline, Re-ranker, Hybrid) side-by-side on the same corpus. LangChain's modular design allowed us to:
+
+1. **Swap retrievers independently** without changing the generation logic.
+2. **Wrap any retriever** with the same `CrossEncoderReranker` using `ContextualCompressionRetriever`.
+3. **Compose pipelines declaratively** using LCEL, making the three architectures differ by only 2-3 lines of code each.
+4. **Inject custom post-processing** (empty-answer fallback, citation validation) via `RunnableLambda`.
+
+### When we'd choose LlamaIndex instead
+
+If the project were a **pure document search** task (e.g., "chat with a single handbook") without the need to compare retrieval strategies, LlamaIndex's retrieval-first design and simpler API would have been the faster path to production. Its strength lies in **indexing complexity**, while LangChain's strength lies in **pipeline flexibility** — and this project demanded the latter.
+
+> **Engineering Takeaway:** The framework choice should follow the project's primary complexity axis. Retrieval-heavy → LlamaIndex. Pipeline-heavy → LangChain.
+
+---
 ## RAG vs Fine-Tuning vs Long Context (LO 6.5)
 
 | Approach | When to Use | Our Decision |
