@@ -21,7 +21,7 @@ pypdf
 rank-bm25
 
 # Web UI 
-streamlit
+streamlit>=1.36.0
 
 # Environment 
 python-dotenv
