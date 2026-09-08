@@ -172,9 +172,8 @@ st.markdown(
     div[data-testid="stPopover"] {
         position: fixed !important;
         bottom: 7.5rem !important;      /* directly above the chat input bar */
-        right: 3rem !important;     /* far right, aligned with the send button */
+        right: 5rem !important;     /* far right, aligned with the send button */
         z-index: 999990 !important;
-        width: 7.5rem;
     }
     </style>
     """,
