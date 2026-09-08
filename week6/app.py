@@ -47,7 +47,6 @@ METHOD_BLURBS = {
 if "retrieval_method" not in st.session_state:
     st.session_state.retrieval_method = METHODS[2]
 
-
 @st.cache_resource
 def load_components():
     embedding_model = HuggingFaceEmbeddings(
@@ -167,20 +166,22 @@ if prompt := st.chat_input("Ask a question about mental health... / اسأل س�
 st.markdown("---")
 st.caption("⚠️ *This assistant is for informational purposes only and does not replace professional medical advice.*")
 
-with st.popover(f"⚙️ Retrieval: {SHORT_LABELS[st.session_state.retrieval_method]}"):
-    st.selectbox(
-        "Retrieval method",
-        METHODS,
-        key="retrieval_method",
-        label_visibility="collapsed",
-    )
-    st.caption(METHOD_BLURBS[st.session_state.retrieval_method])
-
-    with st.expander("ليه التصميم ده؟ / Why these choices?"):
-        st.markdown(
-            "- **Hybrid 🏆**: أعلى Refusal Accuracy (85.7%) في تقييم Lab 6.4.\n"
-            "- **Baseline ⚡**: الأسرع (~9 ثوانٍ متوسط زمن الاستجابة).\n"
-            "- **Re-ranker 🎯**: أدق لما تكون الإجابة مدفونة بين chunks كثيرة.\n\n"
-            "Hybrid يستخدم أوزان 70/30 لأن BM25 أضعف مع الصرف العربي، "
-            "بينما البحث الدلالي يلتقط المعنى بشكل أفضل."
+_, settings_col = st.columns([3, 1])
+with settings_col:
+    with st.popover(f"⚙️ {SHORT_LABELS[st.session_state.retrieval_method]}", use_container_width=True):
+        st.selectbox(
+            "Retrieval method",
+            METHODS,
+            key="retrieval_method",
+            label_visibility="collapsed",
         )
+        st.caption(METHOD_BLURBS[st.session_state.retrieval_method])
+
+        with st.expander("ليه التصميم ده؟ / Why these choices?"):
+            st.markdown(
+                "- **Hybrid 🏆**: أعلى Refusal Accuracy (85.7%) في تقييم Lab 6.4.\n"
+                "- **Baseline ⚡**: الأسرع (~9 ثوانٍ متوسط زمن الاستجابة).\n"
+                "- **Re-ranker 🎯**: أدق لما تكون الإجابة مدفونة بين chunks كثيرة.\n\n"
+                "Hybrid يستخدم أوزان 70/30 لأن BM25 أضعف مع الصرف العربي، "
+                "بينما البحث الدلالي يلتقط المعنى بشكل أفضل."
+            )
