@@ -1,59 +1,73 @@
 # AI Engineer Starter Kit
 
-This repository contains my work for the **12-Week AI Industry Roadmap** by **Helwan Career Center**.
+This repository contains my work for the 12-Week AI Industry Roadmap by Helwan Career Center.
 
 The roadmap focuses on building practical AI engineering skills through weekly hands-on projects covering Python, REST APIs, Machine Learning, NLP, Hugging Face, LLMs, prompt engineering, structured outputs, model evaluation, and modern AI development workflows.
 
 ## Repository Structure
 
-```text
+```
 ai_engineer_starter_kit/
-│
-├── week1/
-│   ├── README.md
-│   ├── daily_quote_sentiment.ipynb
-│   └── requirements.txt
-│
-├── week2/
-│   ├── README.md
-│   ├── app.py
-│   ├── inference.py
-│   ├── model_scout_comparison.ipynb
-│   ├── model_scout_report.md
-│   └── requirements.txt
-│
-├── week3/
-│   ├── prompts/
-│   │   └── email_triage.txt
-│   │
-│   ├── tests/
-│   │   └── test_service.py
-│   │
-│   ├── README.md
-│   ├── main.py
-│   ├── schemas.py
-│   ├── service.py
-│   ├── fake_llm.py
-│   ├── requirements.txt
-│   ├── .env.example
-│   └── conftest.py
-│
-├── week4/
-│   ├── README.md
-│   ├── journal.py
-│   ├── BENCHMARK.md
-│   ├── requirements.txt
-│   ├── .env.example
-│   └── .gitignore
-│
-├── week5/
-│   ├── README.md
-│   ├── app.py
-│   ├── project.py
-│   ├── ProductsData.csv
-│   └── requirements.txt
-│
-└── README.md
+ │
+ ├── week1/
+ │   ├── README.md
+ │   ├── daily_quote_sentiment.ipynb
+ │   └── requirements.txt
+ │
+ ├── week2/
+ │   ├── README.md
+ │   ├── app.py
+ │   ├── inference.py
+ │   ├── model_scout_comparison.ipynb
+ │   ├── model_scout_report.md
+ │   └── requirements.txt
+ │
+ ├── week3/
+ │   ├── prompts/
+ │   │   └── email_triage.txt
+ │   │
+ │   ├── tests/
+ │   │   └── test_service.py
+ │   │
+ │   ├── README.md
+ │   ├── main.py
+ │   ├── schemas.py
+ │   ├── service.py
+ │   ├── fake_llm.py
+ │   ├── requirements.txt
+ │   ├── .env.example
+ │   └── conftest.py
+ │
+ ├── week4/
+ │   ├── README.md
+ │   ├── journal.py
+ │   ├── BENCHMARK.md
+ │   ├── requirements.txt
+ │   ├── .env.example
+ │   └── .gitignore
+ │
+ ├── week5/
+ │   ├── README.md
+ │   ├── app.py
+ │   ├── project.py
+ │   ├── ProductsData.csv
+ │   └── requirements.txt
+ │
+ ├── week6/
+ │   ├── README.md
+ │   ├── app.py
+ │   ├── ingest.py
+ │   ├── rag_chain.py
+ │   ├── rag_chain_reranker.py
+ │   ├── rag_chain_hybrid.py
+ │   ├── compare_versions.py
+ │   ├── evaluation.py
+ │   ├── evaluation_results.csv
+ │   ├── requirements.txt
+ │   └── data/
+ │       └── mental_health_guide.pdf
+ │
+ └── README.md
 ```
 
 ## Weekly Projects
@@ -61,7 +75,6 @@ ai_engineer_starter_kit/
 ### Week 1 — Engineering Foundations for AI
 
 Topics covered:
-
 - Python environments using `venv`
 - Git & GitHub workflow
 - REST APIs
@@ -71,15 +84,11 @@ Topics covered:
 - Jupyter Notebook workflow
 
 Mini Project:
-
-**Daily Quote Sentiment Analyzer**
-
----
+Daily Quote Sentiment Analyzer
 
 ### Week 2 — Using Pretrained Models & Inference Pipelines
 
 Topics covered:
-
 - Hugging Face Model Hub
 - Model comparison and evaluation
 - Inference pipelines
@@ -88,15 +97,11 @@ Topics covered:
 - Local model serving
 
 Mini Project:
-
-**Toxic Comment Detector**
-
----
+Toxic Comment Detector
 
 ### Week 3 — LLMs Demystified + Prompt Engineering
 
 Topics covered:
-
 - High-level LLM and Transformer intuition
 - Tokens, attention, and next-token prediction concepts
 - Hosted LLM APIs and API abstraction
@@ -107,15 +112,11 @@ Topics covered:
 - Cost and latency awareness
 
 Mini Project:
-
-**Prompt-Powered Microservice — Customer Email Triage**
-
----
+Prompt-Powered Microservice — Customer Email Triage
 
 ### Week 4 — Local LLMs & Open-Source Tooling
 
 Topics covered:
-
 - Running open models locally with Ollama
 - OpenAI-compatible local inference endpoints
 - Model quantization (4-bit) and hardware constraints
@@ -124,15 +125,11 @@ Topics covered:
 - Privacy-first, offline-first application design
 
 Mini Project:
-
-**Private Journaling Assistant**
-
----
+Private Journaling Assistant
 
 ### Week 5 — Embeddings & Vector Search
 
 Topics covered:
-
 - Text embeddings and dense vector representations
 - Multilingual sentence transformers
 - Vector databases and similarity indexing
@@ -141,8 +138,21 @@ Topics covered:
 - Building multilingual semantic search systems
 
 Mini Project:
+Semantic Product Search Engine
 
-**Semantic Product Search Engine**
+### Week 6 — RAG Pipelines — Retrieval-Augmented Generation
+
+Topics covered:
+- RAG architecture: the ingest pipeline vs the query pipeline
+- Document loaders, chunking strategies, and metadata for citations
+- RAG orchestration with LangChain and grounded generation
+- Re-ranking with Cross-Encoders and hybrid search (keyword + vector)
+- Anti-hallucination prompting with strict page-level citations
+- RAG evaluation: citation accuracy, refusal accuracy, and latency
+- RAG vs fine-tuning vs long-context prompting — a decision framework
+
+Mini Project:
+Grounded Mental Health Q&A Assistant — Multilingual RAG over the Saudi MoH Mental Health Guide
 
 ## Technologies
 
@@ -161,6 +171,10 @@ Mini Project:
 - ChromaDB
 - Streamlit
 - scikit-learn
+- LangChain
+- Groq API
+- PyPDF
+- rank-bm25
 
 ## Learning Goals
 
@@ -175,6 +189,6 @@ Throughout this roadmap, I aim to:
 
 ## Author
 
-**Basmala Ahmed**  
+Basmala Ahmed  
 Computer Science & Artificial Intelligence Student  
 AI Engineer Roadmap — Helwan Career Center
