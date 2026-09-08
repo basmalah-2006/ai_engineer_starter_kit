@@ -169,19 +169,36 @@ st.caption("⚠️ *This assistant is for informational purposes only and does n
 st.markdown(
     """
     <style>
+    /* Pin the popover above the chat input, far right */
     div[data-testid="stPopover"] {
         position: fixed !important;
-        bottom: 7.5rem !important;      /* directly above the chat input bar */
-        right: 5rem !important;     /* far right, aligned with the send button */
+        bottom: 7rem !important;
+        right: 1.6rem !important;
         z-index: 999990 !important;
-        width: 5rem;
+        width: fit-content !important;      /* shrink to content size */
+    }
+    /* Compact button: just the emoji + chevron, no extra padding */
+    div[data-testid="stPopover"] button {
+        padding: 0.2rem 0.45rem !important;
+        min-height: 0 !important;
+        height: 2rem !important;
+        width: fit-content !important;
+        font-size: 1rem !important;
+        line-height: 1 !important;
+    }
+    /* Responsive: tighter offsets on small screens */
+    @media (max-width: 640px) {
+        div[data-testid="stPopover"] {
+            right: 0.75rem !important;
+            bottom: 6.6rem !important;
+        }
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-with st.popover(f"⚙️"):
+with st.popover("⚙️"):
     st.selectbox(
         "Retrieval method",
         METHODS,
