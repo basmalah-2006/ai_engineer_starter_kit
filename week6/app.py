@@ -28,14 +28,29 @@ st.markdown("---")
 
 st.sidebar.header("⚙️ Retrieval Settings")
 
-retrieval_method = st.sidebar.selectbox(
-    "Select Retrieval Method (Lab 6.3 Comparison)",
-    [
-        "Baseline (Vector Only)", 
-        "With Re-ranker", 
-        "Hybrid Search (70% Vector + 30% BM25) 🏆"
-    ]
+comparison_mode = st.sidebar.checkbox(
+    "🔬 Comparison Mode",
+    value=False,
+    help="Enable to manually switch between retrieval methods. "
+         "When off, the app automatically uses the best-performing pipeline.",
 )
+
+if comparison_mode:
+    retrieval_method = st.sidebar.selectbox(
+        "Select Retrieval Method",
+        [
+            "Baseline (Vector Only)",
+            "With Re-ranker",
+            "Hybrid Search (70% Vector + 30% BM25) 🏆",
+        ],
+        index=2, 
+    )
+else:
+    retrieval_method = "Hybrid Search (70% Vector + 30% BM25) 🏆"
+    st.sidebar.success(
+        "🏆 **Auto mode:** Using Hybrid Search "
+        "(best Refusal Accuracy: 85.7% in Lab 6.4 evaluation)."
+    )
 
 st.sidebar.markdown("---")
 st.sidebar.info(
