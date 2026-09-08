@@ -168,7 +168,7 @@ st.caption("⚠️ *This assistant is for informational purposes only and does n
 
 _, settings_col = st.columns([3, 1])
 with settings_col:
-    with st.popover(f"⚙️ {SHORT_LABELS[st.session_state.retrieval_method]}", use_container_width=True):
+    with st.popover(f"⚙️", use_container_width=True):
         st.selectbox(
             "Retrieval method",
             METHODS,
@@ -179,7 +179,7 @@ with settings_col:
 
         with st.expander("ليه التصميم ده؟ / Why these choices?"):
             st.markdown(
-                "- **Hybrid 🏆**: أعلى Refusal Accuracy (85.7%) في تقييم Lab 6.4.\n"
+                "- **Hybrid 🏆**: أعلى Refusal Accuracy (85.7%) في تقييم.\n"
                 "- **Baseline ⚡**: الأسرع (~9 ثوانٍ متوسط زمن الاستجابة).\n"
                 "- **Re-ranker 🎯**: أدق لما تكون الإجابة مدفونة بين chunks كثيرة.\n\n"
                 "Hybrid يستخدم أوزان 70/30 لأن BM25 أضعف مع الصرف العربي، "
