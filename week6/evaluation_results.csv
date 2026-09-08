@@ -1,0 +1,22 @@
+chain_version,question,expected_refusal,generated_answer,has_citation,correct_citation,correct_refusal,latency_seconds
+Baseline,ما هي أهم عوامل الخطر التي تؤثر على الصحة النفسية في بيئة العمل؟,No,أهم عوامل الخطر التي تؤثر على الصحة النفسية في بيئة العمل هي:  - الإكتئاب   - القلق   - الاحتراق الوظيفي    (المصدر: الصفحة 1)...,Yes,✅,✅,2.07
+Baseline,كيف يمكن للمنظمة تعزيز الرفاه النفسي للموظفين؟,No,يمكن للمنظمة تعزيز الرفاه النفسي للموظفين من خلال عدة خطوات مستندة إلى ما ورد في الوثيقة:  1. **تطوير وتنفيذ سياسات وبرامج صحة نفسية في مكان العمل** ت...,Yes,✅,✅,1.91
+Baseline,ما هي علامات الإرهاق الوظيفي التي يجب أن ينتبه لها المشرفون؟,No,لا أملك معلومات كافية في المستند للإجابة على هذا السؤال....,No,❌,❌,0.8
+Baseline,How can a manager support employees mentally?,No,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kzh4cfahe84t79614sz5q4vq` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6735, Requested 1444. Please try again in 1.3425s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",No,❌,❌,0
+Baseline,ما هو اضطراب القلق العام GAD؟,Yes,لا أملك معلومات كافية في المستند للإجابة على هذا السؤال....,No,✅,✅,16.49
+Baseline,What is PTSD and how is it diagnosed?,Yes,I do not have enough information in the document to answer this question....,No,✅,✅,6.96
+Baseline,ما هي معايير DSM-5 لتشخيص الاكتئاب الحاد؟,Yes,لا أملك معلومات كافية في المستند للإجابة على هذا السؤال....,No,✅,✅,20.99
+Re-ranker,ما هي أهم عوامل الخطر التي تؤثر على الصحة النفسية في بيئة العمل؟,No,أهم عوامل الخطر التي تؤثر على الصحة النفسية هي العوامل والخصائص التي تُؤثِّر على المستوى البيولوجي أو النفسي أو العائلي أو الاجتماعي أو الثقافي، وتسبق...,Yes,✅,✅,21.81
+Re-ranker,كيف يمكن للمنظمة تعزيز الرفاه النفسي للموظفين؟,No,يمكن للمنظمة تعزيز الرفاه النفسي للموظفين من خلال مجموعة من الإجراءات المنهجية، منها:  - توفير **الدعم الاجتماعي** داخل بيئة العمل (مثلاً تشجيع التعاو...,Yes,✅,✅,18.13
+Re-ranker,ما هي علامات الإرهاق الوظيفي التي يجب أن ينتبه لها المشرفون؟,No,لا أملك معلومات كافية في المستند للإجابة على هذا السؤال....,No,❌,❌,24.67
+Re-ranker,How can a manager support employees mentally?,No,I do not have enough information in the document to answer this question....,No,❌,❌,9.02
+Re-ranker,ما هو اضطراب القلق العام GAD؟,Yes,لا أملك معلومات كافية في المستند للإجابة على هذا السؤال....,No,✅,✅,18.23
+Re-ranker,What is PTSD and how is it diagnosed?,Yes,I do not have enough information in the document to answer this question....,No,✅,✅,6.34
+Re-ranker,ما هي معايير DSM-5 لتشخيص الاكتئاب الحاد؟,Yes,لا أملك معلومات كافية في المستند للإجابة على هذا السؤال....,No,✅,✅,21.09
+Hybrid,ما هي أهم عوامل الخطر التي تؤثر على الصحة النفسية في بيئة العمل؟,No,لا أملك معلومات كافية في المستند للإجابة على هذا السؤال....,No,❌,❌,18.53
+Hybrid,كيف يمكن للمنظمة تعزيز الرفاه النفسي للموظفين؟,No,يمكن للمنظمة تعزيز الرفاه النفسي للموظفين من خلال عدة إجراءات مستندة إلى ما ورد في المستند:  1. **إنشاء بيئة عمل صحية وآمنة** – توفير مكان عمل خالٍ من...,Yes,✅,✅,16.59
+Hybrid,ما هي علامات الإرهاق الوظيفي التي يجب أن ينتبه لها المشرفون؟,No,لا أملك معلومات كافية في المستند للإجابة على هذا السؤال....,No,❌,❌,23.55
+Hybrid,How can a manager support employees mentally?,No,I do not have enough information in the document to answer this question....,No,❌,❌,7.27
+Hybrid,ما هو اضطراب القلق العام GAD؟,Yes,لا أملك معلومات كافية في المستند للإجابة على هذا السؤال....,No,✅,✅,19.15
+Hybrid,What is PTSD and how is it diagnosed?,Yes,I do not have enough information in the document to answer this question....,No,✅,✅,10.04
+Hybrid,ما هي معايير DSM-5 لتشخيص الاكتئاب الحاد؟,Yes,لا أملك معلومات كافية في المستند للإجابة على هذا السؤال....,No,✅,✅,22.12
