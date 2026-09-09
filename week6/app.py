@@ -9,6 +9,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from groq import Groq
 from dotenv import load_dotenv
+from groq import RateLimitError
 import os
 
 load_dotenv()
@@ -29,12 +30,13 @@ st.markdown("---")
 st.sidebar.header("⚙️ Retrieval Settings")
 
 retrieval_method = st.sidebar.selectbox(
-    "Select Retrieval Method (Lab 6.3 Comparison)",
+    "Select Retrieval Method ",
     [
-        "Baseline (Vector Only)", 
-        "With Re-ranker", 
+        "Baseline (Vector Only)",
+        "With Re-ranker",
         "Hybrid Search (70% Vector + 30% BM25) 🏆"
-    ]
+    ],
+    index=2, 
 )
 
 st.sidebar.markdown("---")
@@ -143,26 +145,37 @@ if prompt := st.chat_input("Ask a question about mental health... / اسأل س�
     with st.chat_message("user"):
         st.markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
-    
+
     with st.chat_message("assistant"):
         with st.spinner("Thinking... / جاري التفكير..."):
-            retrieved_docs = retriever.invoke(prompt)
-            answer = rag_chain.invoke(prompt)
-            st.markdown(answer)
-            
-            sources = [
-                {"page": doc.metadata.get("page", "?"), "content": doc.page_content} 
-                for doc in retrieved_docs
-            ]
-            with st.expander("📚 View Sources / عرض المصادر"):
-                for i, src in enumerate(sources, 1):
-                    st.markdown(f"**Source {i}** (Page {src['page']}): {src['content'][:250]}...")
-                    
-    st.session_state.messages.append({
-        "role": "assistant", 
-        "content": answer, 
-        "sources": sources
-    })
+            try:
+                retrieved_docs = retriever.invoke(prompt)
+                answer = rag_chain.invoke(prompt)
+                st.markdown(answer)
+                
+                sources = [
+                    {"page": doc.metadata.get("page", "?"), "content": doc.page_content} 
+                    for doc in retrieved_docs
+                ]
+                with st.expander("📚 View Sources / عرض المصادر"):
+                    for i, src in enumerate(sources, 1):
+                        st.markdown(f"**Source {i}** (Page {src['page']}): {src['content'][:250]}...")
+                        
+                st.session_state.messages.append({
+                    "role": "assistant", 
+                    "content": answer, 
+                    "sources": sources
+                })
+                
+            except RateLimitError:
+                error_msg = "⚠️ **Rate Limit Reached:** تم الوصول للحد الأقصى المجاني اليومي لـ Groq API بسبب كثرة الاختبارات. يرجى المحاولة غداً أو تغيير النموذج."
+                st.warning(error_msg)
+                st.session_state.messages.append({"role": "assistant", "content": error_msg})
+                
+            except Exception as e:
+                error_msg = f"❌ حدث خطأ غير متوقع: {str(e)}"
+                st.error(error_msg)
+                st.session_state.messages.append({"role": "assistant", "content": error_msg})
 
 st.markdown("---")
 st.caption("⚠️ *This assistant is for informational purposes only and does not replace professional medical advice.*")
