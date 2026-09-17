@@ -187,9 +187,6 @@ week7/
  ├── test_tools.py             ← Independent tool unit tests
  ├── check_models.py           ← Live Gemini model discovery utility
  │
- ├── .streamlit/
- │   └── config.toml           ← Streamlit deployment theme
- │
  ├── data/
  │   └── CS212-Intro.-to-Artificial-Intelligence-...pdf   ← 706-page source corpus
  │
