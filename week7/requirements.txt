@@ -1,0 +1,9 @@
+streamlit==1.40.0
+google-generativeai
+python-dotenv
+langchain-text-splitters
+langchain-community
+langchain-huggingface
+faiss-cpu
+pypdf
+sentence-transformers
