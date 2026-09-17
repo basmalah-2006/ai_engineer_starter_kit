@@ -6,6 +6,8 @@ This project demonstrates how to build an end-to-end RAG pipeline that allows us
 
 The application supports a full Streamlit web interface (`app.py`) for interactive querying, alongside CLI scripts for pipeline comparison (`compare_versions.py`) and automated evaluation (`evaluation.py`).
 
+> 🌐 **Live Demo:** [mindfulrag.streamlit.app](https://mindfulrag.streamlit.app/) — try it instantly, no installation needed!
+
 ---
 
 ## Features

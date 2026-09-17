@@ -168,6 +168,8 @@ Topics covered:
 Mini Project:
 Grounded Mental Health Q&A Assistant — Multilingual RAG over the Saudi MoH Mental Health Guide
 
+🌐 Live Demo: https://mindfulrag.streamlit.app/
+
 ### Week 7 — Tool Calling, Memory & Conversational Systems
 
 Topics covered:
