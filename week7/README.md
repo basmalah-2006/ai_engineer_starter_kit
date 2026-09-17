@@ -1,4 +1,4 @@
-# 🤖 Smart Study Buddy — Conversational AI Agent with Tool Calling, Memory & RAG
+# Smart Study Buddy — Conversational AI Agent with Tool Calling, Memory & RAG
 
 A production-grade conversational assistant built over 706 pages of Helwan National University's CS212 (Introduction to Artificial Intelligence) lecture notes.
 
@@ -13,7 +13,7 @@ The application supports a full **Streamlit web interface** (`app.py`) deployed 
 ## Features
 
 - **Autonomous Tool Calling:** The agent decides independently which tool to invoke (RAG search vs. grade calculator) based on the user's intent — no hardcoded routing.
-- **Self-Retrying Retrieval:** In the demo below, the agent called the search tool *twice* on its own because it judged the first retrieval insufficient — emergent agentic behavior.
+- **Self-Retrying Retrieval:** The agent supports multiple tool-calling iterations and can perform repeated retrieval/tool calls when requested by the model.
 - **Dual-Layer Memory:** Rolling short-term window (last 10 messages) + persistent long-term facts (`user_memory.json`) that survive restarts.
 - **Grounded RAG Answers:** Every course-related answer is retrieved from 706 pages of lecture PDFs and cited with exact page numbers.
 - **Production-Grade Safety:** Tool allow-list, infinite-loop guard (max 4 iterations), retry-with-backoff on rate limits, and protobuf-safe input validation.
