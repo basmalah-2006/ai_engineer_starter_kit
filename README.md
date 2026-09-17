@@ -67,6 +67,20 @@ ai_engineer_starter_kit/
  │   └── data/
  │       └── mental_health_guide.pdf
  │
+ ├── week7/
+ │   ├── README.md
+ │   ├── app.py
+ │   ├── main.py
+ │   ├── memory.py
+ │   ├── rag.py
+ │   ├── tools.py
+ │   ├── test_tools.py
+ │   ├── check_models.py
+ │   ├── requirements.txt
+ │   ├── vector_store/
+ │   └── data/
+ │       └── CS212-Intro-to-AI-Lecture-Notes.pdf
+ │
  └── README.md
 ```
 
@@ -154,6 +168,21 @@ Topics covered:
 Mini Project:
 Grounded Mental Health Q&A Assistant — Multilingual RAG over the Saudi MoH Mental Health Guide
 
+### Week 7 — Tool Calling, Memory & Conversational Systems
+
+Topics covered:
+- Function/tool calling: schemas, the call–execute–respond loop, parallel tool calls
+- Designing tools: naming, descriptions, typed arguments, idempotency, and error messages
+- Memory types: conversation buffer, summarization memory, and vector-backed long-term memory
+- Combining RAG + tools + memory into one coherent conversational assistant
+- Safety: tool-call validation, allow-lists, and avoiding infinite loops
+- Reliability: error handling, retries with backoff, and loop guards for tool-calling agents
+
+Mini Project:
+Smart Study Buddy — Conversational AI Agent with Tool Calling, Memory & RAG (Gemini function calling + FAISS over 706 pages of AI lecture notes + dual-layer memory, CLI + deployed Streamlit UI)
+
+🌐 Live Demo: https://studybuddy123.streamlit.app/
+
 ## Technologies
 
 - Python
@@ -175,6 +204,8 @@ Grounded Mental Health Q&A Assistant — Multilingual RAG over the Saudi MoH Men
 - Groq API
 - PyPDF
 - rank-bm25
+- Google Gemini API
+- FAISS
 
 ## Learning Goals
 
@@ -189,6 +220,6 @@ Throughout this roadmap, I aim to:
 
 ## Author
 
-Basmala Ahmed  
+**Basmalah Ahmed**  
 Computer Science & Artificial Intelligence Student  
 AI Engineer Roadmap — Helwan Career Center
