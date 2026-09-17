@@ -4,7 +4,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 
-PDF_PATH = r"week7\data\CS212-Intro.-to-Artificial-Intelligence---All-Lecture-Notes-0-to-12-(@HNU)-Spring-2025 (3).pdf"
+PDF_PATH = r"week7/data/CS212-Intro.-to-Artificial-Intelligence---All-Lecture-Notes-0-to-12-(@HNU)-Spring-2025 (3).pdf"
 VECTOR_DB_PATH = "vector_store"
 
 
