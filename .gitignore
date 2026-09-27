@@ -216,3 +216,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ChromaDB vector stores (too large for GitHub — rebuild locally)
+week6/chroma_db_multilingual/
+**/chroma_db_*/
+
+# Generated output folders (agent deliverables, charts, reports)
+week8/output/
+
+# Downloaded datasets (Kaggle CSVs — keep links in README()
