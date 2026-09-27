@@ -81,6 +81,26 @@ ai_engineer_starter_kit/
  │   └── data/
  │       └── CS212-Intro-to-AI-Lecture-Notes.pdf
  │
+ ├── week8/
+ │   ├── README.md
+ │   ├── main.py
+ │   ├── check_models.py
+ │   ├── agents/
+ │   │   ├── __init__.py
+ │   │   ├── state.py
+ │   │   ├── nodes.py
+ │   │   └── graph.py
+ │   ├── tools/
+ │   │   ├── __init__.py
+ │   │   └── data_tools.py
+ │   ├── docs/
+ │   │   ├── architecture.png
+ │   │   ├── traces/
+ │   │   └── output/
+ │   ├── data/
+ │   │   └── netflix_titles.csv
+ │   └── requirements.txt
+ │
  └── README.md
 ```
 
@@ -185,6 +205,20 @@ Smart Study Buddy — Conversational AI Agent with Tool Calling, Memory & RAG (G
 
 🌐 Live Demo: https://studybuddy123.streamlit.app/
 
+### Week 8 — Agentic AI & Autonomous Workflows
+
+Topics covered:
+- Agent vs workflow vs chatbot — and when each is appropriate
+- Agentic patterns: ReAct, plan-and-execute, reflection/critique, and human-in-the-loop checkpoints
+- LangGraph: agents as state machines with explicit nodes, conditional edges, retries, and persistence
+- Multi-agent orchestration with CrewAI (roles/crews) and where AutoGen/Pydantic-AI fit
+- Observability & tracing with LangSmith; defining agent success metrics
+- Cost, safety, and reliability: guardrails, budgets, and step limits
+- Framework decision framework: choosing LangGraph vs CrewAI based on the project's primary complexity axis
+
+Mini Project:
+Netflix Data Analysis Agent — Autonomous Agentic Workflow (LangGraph state machine over the 8,807-title Netflix catalog: self-healing validation with a retry budget, 4 auto-generated strategic charts, LLM-synthesized content-acquisition report, human-in-the-loop approval with a bounded revision loop, and full LangSmith tracing at sub-cent cost per run)
+
 ## Technologies
 
 - Python
@@ -203,11 +237,15 @@ Smart Study Buddy — Conversational AI Agent with Tool Calling, Memory & RAG (G
 - Streamlit
 - scikit-learn
 - LangChain
+- LangGraph
+- LangSmith
 - Groq API
 - PyPDF
 - rank-bm25
 - Google Gemini API
 - FAISS
+- pandas
+- matplotlib
 
 ## Learning Goals
 
