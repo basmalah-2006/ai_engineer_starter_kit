@@ -47,6 +47,10 @@ For every run, the agent produces three deliverables in `output/`:
 | `execution_log.txt` | Append-only log of every node executed. |
 | `*.png` (4 charts) | Type distribution (pie), top countries (bar), yearly growth (line), top genres (horizontal bar). |
 
+**Report preview:**
+
+![Report Preview](./docs/output/report_preview.png)
+
 **Generated charts:**
 
 | | |
@@ -244,7 +248,7 @@ This project's primary complexity axis is **reliability and observability** (gua
 
 **When we'd choose CrewAI instead:** a content-pipeline crew (researcher → writer → editor → reviewer) where value comes from *role diversity and debate*, not deterministic control.
 
-> **Engineering Takeaway:** framework choice should follow the project's complexity axis. Reliability-heavy → LangGraph. Role-diversity-heavy → CrewAI.
+> **Engineering Takeaway:** framework choice should follow the project's primary complexity axis. Reliability-heavy → LangGraph. Role-diversity-heavy → CrewAI.
 
 ---
 
@@ -273,9 +277,17 @@ A run is considered successful when **ALL** of the following hold:
 | Model 404 failure | 2.05s | 0 | $0.00 | ❌ Graceful fail |
 | File-not-found failure | 0.09s | 0 | $0.00 | ❌ Graceful fail |
 
-**Revision loop trace** — note the `generate_report → human_approval → generate_report` cycle:
+**Inside the revision loop — how the agent plans, acts, and revises:**
 
-![Revision Loop Trace](./docs/traces/revision_trace.png)
+| Full Trace Tree | Zoomed-in Node Detail |
+|:---:|:---:|
+| ![Revision trace overview](./docs/traces/revision_trace_overview.png) | ![Revision trace detail](./docs/traces/revision_trace_detail.png) |
+
+**Inside an LLM call — the exact prompt and response captured by LangSmith:**
+
+| Input (prompt sent to Groq) | Output (model response) |
+|:---:|:---:|
+| ![LLM call input](./docs/traces/llm_call_detail_input.png) | ![LLM call output](./docs/traces/llm_call_detail_output.png) |
 
 > **Observation:** both successful runs meet all 5 success criteria, and failed runs exit cleanly via `fail_node` instead of crashing or looping forever.
 
@@ -311,7 +323,11 @@ Every failure path ends at `fail_node → END`. The agent never crashes; it repo
 
 **What happened:** the first run failed with `No such file or directory: 'data/netflix_titles.csv'`. The retry mechanism triggered 3 times, then the agent exited gracefully via `fail_node`.
 
-![File-not-found trace](./docs/traces/file_not_found_error.png)
+**How the failure manifested — input vs output:**
+
+| Input (the request) | Output (the error) |
+|:---:|:---:|
+| ![File not found — input](./docs/traces/file_not_found_input.png) | ![File not found — output](./docs/traces/file_not_found_output.png) |
 
 **Root cause:** relative paths resolved against the current working directory, not the project folder.
 
